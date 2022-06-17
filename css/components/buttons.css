@@ -1,0 +1,29 @@
+button.curriculo {
+    display: inline-block; /*Se deixar só inline, não dá pra definir a largura e altura*/
+    background-color: #ff1f1f;
+    box-shadow: #000000 0px 0px 10px;
+    /*box-shadow: 10px 10px 20px #000;*/
+    padding: 20px 20px;
+    border: 2px solid;
+    border-color: #FFF;
+    border-radius: 10px;
+    margin: 10px, fff;
+}
+
+button.curriculo:hover {
+    background-color: #ff8e8e;
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+button.curriculo:active {
+    background-color: #ff1f1f; 
+} 
+
+/*button*/
+#arrow-left{
+    background-color: #ff1f1f;
+}
+#arrow-right{
+    background-color: #ff1f1f;
+}

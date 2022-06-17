@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/public/assets/img/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="/public/CSS/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/CSS/index.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Fonts Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet"> <!-- Fonts Google -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GIT Orientações</title>
+</head>
+<body>
+    <h1>Git Orientações</h1>
+    <h2># Primeira vez></h2>
+    <ol>
+        <li>git config --global user.name "vagner.araujo" [para que todos os commits usem esse usuário]
+        </li>
+        <li>git config --global user.email "vagner.araujo@tse.jus.br" [para que todos os commits usem esse email]</li>
+        <li>git clone https://git.tse.jus.br/eleitoral/sistema-totalizacao.git [para baixar o repositório - ou também pode ser usado o git pull]</li>
+        <li>git branch feature [git branch + nome, cria um novo universo paralelo da branch principal, assim você pode trabalhar localmente ]</li>
+        <li>5. git checkout feature [entra na banch]</li>
+        <li>6. git checkout -b feature [esse comando cria e já entra na branch]</li>
+        <li>7. git add . [para adicionar todos os arquivos ao commit]</li>
+        <li>8. git commit -m "descrição" [para commitar tudo que foi adicionado, e o "-m" para que o commit tenha uma descrição]</li>
+        <li>9. Q (a letra q) sai das telas de comparação, por exemplo: quando você usa o git diff, que exibe a dela de comparação.</li>
+        <li>10. origin é o nosso computador</li>
+        <li>11. git branch - master é a branch que está sendo usada [verifique o nome da branch com "git branch" e caso sejam exibidas mais de uma, repare naquela que contiver o asterisco, exemplo: *master]</li>
+        <li>12. git push origin master [é a master local], vai subir  (empurrar) da master local para a master remota]</li>
+        <li>13. git push --set-upstream origin redmine143987-manual-suplementar
+        <li>14. git pull origin master [para puxar(baixar) tudo da branch remota para a local]
+        <li>15. git status [diz como está a sua branch local com relação a branch remota, isto é, mostra os arquivos modificados e os arquivos que não são controlados pelo git]
+        <li>16. git log [mostra as mudanças no projeto]
+        <li>17. git show 70747a19db511f900651cab18326fdf4d9b48877 [git show + número do commit, detalha o que foi feito]
+        <li>18. git merge feature [mescla a branch feature com a branch master]
+        <li>19. git branch -d feature [deleta a branch feature]
+        <li>20. git push -u origin master [para enviar a branch local para a remota]
+        <li>21. git pull [Baixa as atualizações do repositório remoto]
+        <li>gitInit (cria um novo repositório)
+        <li>gitLog (Visualizar o Histórico De Alterações)
+        <li>git Status (exibe as condições do diretório de </li>trabalho e da área de staging)
+        <li>git Add (salva as alterações, isto é, adiciona um item novo para o commit)
+        <li>7. git add . [para adicionar todos os arquivos do diretório atual ao commit]
+        <li>8. git commit -m "descrição" [para commitar tudo que foi adicionado, e o "-m" para que o commit tenha uma descrição]
+        <li>9. git push origin HEAD:"nomeDaBranchRemota" [onde origin é a representação da branch local com tudo que vai subir (empurrar) para a branch remota</li>
+</ol>
+    <h2>Segue os passos que faço TortoiseGit, antes de atualizar qualquer documentação:</h2>
+    <ol>
+        <li>Switch and Checkout (desenvolvimento)</li>
+        <li>2. Pull (desenvolvimento)</li>
+        <li>3. Switch and Checkout (sua branch)</li>
+        <li>4. Pull (sua branch)</li>
+        <li>5. Push Desenvolvimento para sua branch</li>
+        <li>6. Pull (sua branch)</li>
+        <p>Para atualizar um documento</p>
+        <li>Git Commit (sua branch)</li>
+        <li>Push (sua branch local e remota)</li> 
+        <li>Acessar o GIT Lab apertar F5 ai soliciar  um merg request.</li>
+        <li>O comentário que coloco é o número da demanda que estou trabalhando. Ou número do BUG.</li>
+    </ol>
+    <video width="320" height="240" controls>
+        <source src="https://youtu.be/fBi-hBqfHTc" type="video/mp4">
+    </video>
+</body>
+</html>
