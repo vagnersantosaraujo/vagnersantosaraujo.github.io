@@ -1,7 +1,64 @@
+/* Reset Básico e Configurações Globais */
 body {
-    background-color: #282c34;
-    color: white;
     font-family: sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Container para centralizar o conteúdo */
+header, main, footer {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+}
+
+/* Estilizando o Cabeçalho com Flexbox */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Estilizando o Conteúdo Principal */
+main {
+    background-color: white;
+}
+
+article h2 {
+    color: #333;
+}
+
+/* Estilizando o Rodapé */
+footer {
     text-align: center;
-    padding-top: 50px;
 }
