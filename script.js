@@ -1,0 +1,1 @@
+console.log("Site carregado com sucesso! O JavaScript está funcionando.");
