@@ -20,34 +20,6 @@ header, footer {
     color: white;
 }
 
-/* Estilizando o Cabeçalho com Flexbox */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
 
 /* Estilizando o Conteúdo Principal */
 main {
@@ -198,4 +170,20 @@ footer {
 
 .main-nav a:hover {
     color: #007bff; /* Muda de cor quando o mouse passa por cima */
+}
+
+/* Estilo para o item de menu ativo */
+.main-nav a.active {
+    color: #007bff; /* Azul vibrante para destacar */
+    font-weight: bold;
+}
+/* Estilo para o link no rodapé */
+footer a {
+    color: #fff; /* Cor branca para contrastar com o fundo escuro */
+    text-decoration: none; /* Remove o sublinhado padrão */
+}
+
+footer a {
+    color: #fff; /* Cor branca para contrastar com o fundo escuro */
+    text-decoration: underline; /* Adiciona um sublinhado para parecer um link */
 }
