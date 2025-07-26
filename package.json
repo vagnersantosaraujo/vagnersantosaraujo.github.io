@@ -1,0 +1,24 @@
+{
+  "name": "vagnersantosaraujo.github.io",
+  "version": "1.0.0",
+  "description": "**Objetivos do Projeto:** * Criar um CMS (Content Management System) funcional e minimalista. * Aplicar boas práticas de segurança e design.",
+  "main": "admin-script.js",
+"scripts": {
+  "test": "jest"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vagnersantosaraujo/vagnersantosaraujo.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vagnersantosaraujo/vagnersantosaraujo.github.io/issues"
+  },
+  "homepage": "https://github.com/vagnersantosaraujo/vagnersantosaraujo.github.io#readme",
+  "devDependencies": {
+    "jest": "^30.0.4"
+  }
+}
