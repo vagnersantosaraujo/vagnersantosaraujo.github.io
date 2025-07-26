@@ -166,3 +166,36 @@ footer {
     border-radius: 8px;
     margin-bottom: 20px;
 }
+/* Header e Navegação */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.main-title a {
+    color: #333;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.main-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Cria um espaço entre os itens do menu */
+}
+
+.main-nav a {
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s ease-in-out;
+}
+
+.main-nav a:hover {
+    color: #007bff; /* Muda de cor quando o mouse passa por cima */
+}
