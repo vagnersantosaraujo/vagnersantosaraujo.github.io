@@ -6,3 +6,6 @@ firebase-keys.js
 
 # Arquivos de ambiente do IDX/Firebase Studio
 .idx/
+
+# Arquivo de sistema do macOS
+.DS_Store
