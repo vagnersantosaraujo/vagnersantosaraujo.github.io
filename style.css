@@ -187,3 +187,15 @@ footer a {
     color: #fff; /* Cor branca para contrastar com o fundo escuro */
     text-decoration: underline; /* Adiciona um sublinhado para parecer um link */
 }
+
+#login-google-btn {
+    background-color: #4285F4; /* Cor oficial do Google Blue */
+}
+
+/* Estilo específico para o botão de Logout */
+#logout-btn {
+    background-color: #6c757d; /* Um cinza elegante */
+    display: inline-block; /* Garante que ele se comporte bem */
+    margin-left: 20px; /* Dá um espaço ao lado do "Bem-vindo" */
+    vertical-align: middle; /* Alinha verticalmente com o texto */
+}

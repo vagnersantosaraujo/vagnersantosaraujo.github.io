@@ -1,39 +1,63 @@
-// Este script só roda na página post.html
+// =================================================================
+// ✨ INICIALIZAÇÃO DO FIREBASE ✨
+// =================================================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Pega os parâmetros da URL
-    const params = new URLSearchParams(window.location.search);
-    const postId = parseInt(params.get('id'), 10); // Converte o ID para número
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-    // 2. ✨ ALTERAÇÃO CRÍTICA: Busca os posts do LocalStorage ✨
-    const currentPosts = JSON.parse(localStorage.getItem('posts')) || [];
-
-    // 3. Procura no nosso array 'currentPosts' pelo post que tenha o ID correspondente.
-    const post = currentPosts.find(p => p.id === postId);
-
-    // 4. Seleciona o <main> da página para colocar o conteúdo.
+// =================================================================
+// ✨ LÓGICA DA PÁGINA DO POST ✨
+// =================================================================
+document.addEventListener('DOMContentLoaded', async () => {
     const mainContent = document.querySelector('main.container');
 
-    // 5. Verifica se o post foi encontrado
-    if (post) {
-        document.title = `${post.title} | VSA.BLOG`;
-        // ... (formatação de data) ...
-        
-        // ✨ LÓGICA NOVA AQUI ✨
-        const imageHtml = post.featuredImage 
-            ? `<img src="${post.featuredImage}" alt="Imagem de destaque para o post ${post.title}" class="post-full-image">`
-            : '';
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const postId = params.get('id');
 
-        mainContent.innerHTML = `
-            <article class="post-full">
-                ${imageHtml}
-                <h1>${post.title}</h1>
-                <p class="post-meta"><em>Por ${post.author} em ${post.date}</em></p>
-                <div>${post.contentHtml}</div>
-            </article>
-        `;
-    } else {
-        // Se o ID não corresponde a nenhum post, mostra uma mensagem de erro.
+        if (!postId) {
+            throw new Error("ID do post não encontrado na URL.");
+        }
+
+        console.log(`Buscando post com ID: ${postId}`);
+
+        // Comando para buscar um ÚNICO documento pelo seu ID
+        const docRef = db.collection("posts").doc(postId);
+        const doc = await docRef.get();
+
+        if (doc.exists) {
+            // Se o documento existe, pegamos os dados
+            const post = doc.data();
+            console.log("Post encontrado:", post);
+
+            document.title = `${post.title} | vagner.pages`;
+            
+            const dirtyHtml = marked.parse(post.contentMarkdown || '');
+            const cleanHtml = DOMPurify.sanitize(dirtyHtml);
+
+            const imageHtml = post.featuredImage 
+                ? `<img src="${post.featuredImage}" alt="Imagem de destaque para ${post.title}" class="post-full-image">`
+                : '';
+            
+            const postDate = post.createdAt && post.createdAt.toDate 
+                ? post.createdAt.toDate().toLocaleDateString('pt-BR') 
+                : 'Data indisponível';
+
+            mainContent.innerHTML = `
+                <article class="post-full">
+                    ${imageHtml}
+                    <h1>${post.title}</h1>
+                    <p class="post-meta"><em>Por ${post.authorName} em ${postDate}</em></p>
+                    <div>${cleanHtml}</div>
+                </article>
+            `;
+        } else {
+            // Se o documento com aquele ID não foi encontrado
+            throw new Error("Post não encontrado no banco de dados.");
+        }
+
+    } catch (error) {
+        console.error("Erro ao carregar o post:", error);
         mainContent.innerHTML = '<h1>Ops! Post não encontrado.</h1>';
     }
 });

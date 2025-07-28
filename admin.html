@@ -19,9 +19,16 @@
         </nav>
     </header>
 
-    <main class="container">
+<main class="container">
+    <div id="auth-container">
+        <h2>Área Administrativa</h2>
+        <p>Por favor, faça o login para continuar.</p>
+        <button id="login-google-btn" class="btn">Login com Google</button>
+    </div>
+
+    <div id="content-container" style="display: none;">
         <h2>Bem-vindo, Vagner!</h2>
-        
+
         <form id="post-form">
             <div class="form-group">
                 <label for="post-title">Título do Post</label>
@@ -29,9 +36,9 @@
             </div>
             <div class="form-group">
                 <label for="post-content">Conteúdo do Post (Markdown)</label>
-                <textarea id="post-content-markdown" rows="15" required></textarea>
+                <textarea id="post-content" rows="15" required></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="post-image">Imagem de Destaque</label>
                 <input type="file" id="post-image" accept="image/png, image/jpeg">
@@ -41,17 +48,20 @@
             </div>
             <button type="submit">Publicar Post</button>
         </form>
-           
-    </main>
+    </div>
+</main>
 
     <footer>
         <p>&copy; 2025 VSA. Todos os direitos reservados.</p>
         <p><a href="admin.html">Área Administrativa</a></p>
     </footer>
-
+    <script src="firebase-keys.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.5/dist/purify.min.js"></script> 
     <script src="logic.js"></script>
-    <script src="admin-script.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

@@ -1,1 +1,8 @@
 node_modules/
+firebase-keys.js
+
+# Arquivos de cache e ambiente do Firebase
+.firebase/
+
+# Arquivos de ambiente do IDX/Firebase Studio
+.idx/
