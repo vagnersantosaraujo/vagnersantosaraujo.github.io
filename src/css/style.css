@@ -1,0 +1,709 @@
+/* css/style.css - VERSÃO COMPLETA E REVISADA */
+
+/* ---------------------------------------------------- */
+/* 1. VARIÁVEIS (TOKENS) DO MATERIAL DESIGN 3 (M3)      */
+/* ---------------------------------------------------- */
+:root {
+    /* -- CORES -- */
+    --cor-primaria: #00639B;
+    --cor-primaria-transparente: rgba(0, 99, 155, 0.2);
+    --cor-texto-em-primaria: #FFFFFF;
+    --cor-container-primario: #CFE5FF;
+    --cor-texto-em-container-primario: #001E33;
+    --cor-secundaria: #526070;
+    --cor-texto-em-secundaria: #FFFFFF;
+    --cor-fundo: #FDFCFF;
+    --cor-superficie: #FDFCFF;
+    --cor-superficie-variante: #E0E2EC;
+    --cor-texto-principal: #1A1C1E;
+    --cor-texto-secundario: #42474E;
+    --cor-borda: #73777F;
+    --cor-erro: #BA1A1A;
+    --sombra-padrao: 0 1px 2px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1);
+    --borda-radius: 16px;
+    --largura-maxima: 1200px;
+
+    /* -- TIPOGRAFIA -- */
+    --fonte-familia: 'Roboto', sans-serif;
+    --peso-regular: 400;
+    --peso-medium: 500;
+    --peso-bold: 700;
+    --tamanho-display: 2.8rem;
+    --tamanho-headline: 2.2rem;
+    --tamanho-title: 1.5rem;
+    --tamanho-body: 1rem;
+    --tamanho-label: 0.9rem;
+
+    /* -- ESPAÇAMENTO -- */
+    --espaco-xs: 4px;
+    --espaco-sm: 8px;
+    --espaco-md: 16px;
+    --espaco-lg: 24px;
+    --espaco-xl: 32px;
+    --espaco-xxl: 48px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --cor-primaria: #99CBFF;
+        --cor-primaria-transparente: rgba(153, 203, 255, 0.2);
+        --cor-texto-em-primaria: #003353;
+        --cor-container-primario: #004A75;
+        --cor-texto-em-container-primario: #CFE5FF;
+        --cor-secundaria: #B9C8DA;
+        --cor-texto-em-secundaria: #243240;
+        --cor-fundo: #1A1C1E;
+        --cor-superficie: #1A1C1E;
+        --cor-superficie-variante: #42474E;
+        --cor-texto-principal: #E3E2E6;
+        --cor-texto-secundario: #C2C6CF;
+        --cor-borda: #8C9199;
+        --cor-erro: #FFB4AB;
+    }
+}
+
+/* ----------------------------------- */
+/* 2. RESET E ESTILOS GLOBAIS          */
+/* ----------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-familia);
+    font-size: var(--tamanho-body);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ----------------------------------- */
+/* 3. HEADER E NAVEGAÇÃO               */
+/* ----------------------------------- */
+.main-header {
+    background-color: var(--cor-superficie);
+    box-shadow: var(--sombra-padrao);
+    padding: var(--espaco-md) var(--espaco-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo a {
+    display: flex;
+    align-items: center;
+    color: var(--cor-texto-principal);
+    font-weight: var(--peso-bold);
+    text-decoration: none;
+}
+
+.logo-emoji {
+    font-size: var(--tamanho-headline);
+    margin-right: var(--espaco-sm);
+}
+
+.main-title {
+    font-size: var(--tamanho-title);
+}
+
+.main-nav ul {
+    display: flex;
+    gap: var(--espaco-lg);
+}
+
+.main-nav a {
+    font-weight: var(--peso-medium);
+    color: var(--cor-texto-secundario);
+    transition: color 0.2s ease-in-out;
+}
+
+.main-nav a:hover {
+    color: var(--cor-primaria);
+}
+
+.main-nav a.active {
+    color: var(--cor-texto-em-container-primario);
+    background-color: var(--cor-container-primario);
+}
+
+/* Adicionando o formato de "pílula" e transições suaves a todos os links */
+.main-nav a {
+    font-weight: var(--peso-medium);
+    color: var(--cor-texto-secundario);
+    transition: all 0.3s ease-in-out; /* Transição suave para todas as propriedades */
+    padding: var(--espaco-sm) var(--espaco-md); /* Espaçamento interno */
+    border-radius: 50px; /* Bordas arredondadas para o formato de pílula */
+    text-decoration: none;
+}
+
+.main-nav a:hover {
+    color: var(--cor-texto-principal);
+    background-color: var(--cor-superficie-variante); /* Fundo sutil no hover */
+}
+
+/* ----------------------------------- */
+/* 4. LAYOUT PRINCIPAL E CARDS         */
+/* ----------------------------------- */
+main {
+    max-width: var(--largura-maxima);
+    margin: var(--espaco-xl) auto;
+    padding: 0 var(--espaco-xl);
+}
+
+main > h1 {
+    margin-bottom: var(--espaco-lg);
+    font-size: var(--tamanho-headline);
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--espaco-lg);
+}
+
+.post-card {
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--borda-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-padrao);
+}
+
+.post-card a.post-card-link {
+    text-decoration: none;
+}
+
+.post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.post-card-content {
+    padding: var(--espaco-md);
+}
+
+.post-card-content h2 {
+    font-size: var(--tamanho-title);
+    margin-bottom: var(--espaco-sm);
+    color: var(--cor-texto-principal);
+}
+
+.post-card-content p {
+    font-size: var(--tamanho-label);
+    color: var(--cor-texto-secundario);
+}
+
+/* ----------------------------------- */
+/* 5. PÁGINA DE POST INDIVIDUAL        */
+/* ----------------------------------- */
+.post-full-container {
+    max-width: 800px;
+    background-color: var(--cor-superficie);
+    margin: var(--espaco-xl) auto;
+    padding: var(--espaco-xxl);
+    border-radius: var(--borda-radius);
+    border: 1px solid var(--cor-borda);
+}
+
+/* Antiga regra
+.post-full-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--borda-radius);
+    margin-bottom: var(--espaco-xl);
+}
+*/
+#post-image-container {
+    /* Garante que o container ocupe espaço e adiciona a margem */
+    width: 100%;
+    margin-bottom: var(--espaco-xl);
+}
+
+#post-image-container img {
+    /* Estilos aplicados diretamente à imagem dentro do container */
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--borda-radius);
+    display: block; /* Garante que a imagem se comporte como um bloco */
+}
+
+.post-full-title {
+    font-size: var(--tamanho-display);
+    line-height: 1.2;
+    margin-bottom: var(--espaco-sm);
+}
+
+.post-meta {
+    font-size: var(--tamanho-label);
+    color: var(--cor-texto-secundario);
+    margin-bottom: var(--espaco-xl);
+    font-style: italic;
+}
+
+.post-full-content {
+    font-size: var(--tamanho-body);
+    line-height: 1.8;
+}
+
+.post-full-content h1, .post-full-content h2, .post-full-content h3 {
+    margin-top: var(--espaco-xl);
+    margin-bottom: var(--espaco-md);
+}
+
+.post-full-content p {
+    margin-bottom: var(--espaco-md);
+}
+
+.post-full-content a {
+    text-decoration: underline;
+}
+
+
+/* Ajusta o container dos botões para não encolher */
+#post-admin-actions .admin-actions-home {
+    flex-shrink: 0; 
+    padding: 0; /* Remove o padding que não é mais necessário */
+}
+
+.admin-actions-home {
+    padding: 0 var(--espaco-md) var(--espaco-md) var(--espaco-md);
+    display: flex;
+    gap: var(--espaco-sm);
+    justify-content: flex-end; /* Adicione esta linha */
+}
+/* ----------------------------------- */
+/* 6. PÁGINA DE ADMINISTRAÇÃO          */
+/* ----------------------------------- */
+#auth-container, #content-container {
+    max-width: 800px;
+    margin: var(--espaco-xl) auto;
+    padding: var(--espaco-xxl);
+    background-color: var(--cor-superficie);
+    border-radius: var(--borda-radius);
+    border: 1px solid var(--cor-borda);
+    text-align: center;
+}
+
+#content-container {
+    text-align: left;
+}
+
+#content-container h2 {
+    margin-bottom: var(--espaco-xl);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: var(--espaco-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--espaco-sm);
+    font-weight: var(--peso-medium);
+    color: var(--cor-texto-secundario);
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: var(--espaco-md);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-sm);
+    font-size: var(--tamanho-body);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px var(--cor-primaria-transparente);
+}
+
+button, .btn {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-em-primaria);
+    padding: var(--espaco-md) var(--espaco-lg);
+    border: none;
+    border-radius: 50px;
+    font-size: var(--tamanho-body);
+    font-weight: var(--peso-medium);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    box-shadow: var(--sombra-padrao);
+    transform: scale(1.02);
+}
+
+.image-preview-placeholder {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed var(--cor-borda);
+    border-radius: var(--espaco-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--espaco-md);
+    color: var(--cor-texto-secundario);
+    background-color: var(--cor-fundo);
+    overflow: hidden;
+}
+
+.image-preview-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#existing-posts {
+    margin-top: var(--espaco-xxl);
+}
+
+/* ... outras regras CSS ... */
+
+.existing-post-item {
+    margin-bottom: var(--espaco-lg);
+    padding: var(--espaco-md);
+    background-color: var(--cor-superficie-variante);
+    border-radius: var(--borda-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--espaco-md); /* Adiciona um espaçamento quando os itens quebram a linha */
+}
+
+.post-info {
+    flex-grow: 1; /* Permite que esta div cresça e ocupe o espaço disponível */
+    margin-right: var(--espaco-lg); /* Garante uma distância dos botões */
+}
+
+.existing-post-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0; /* Remove a margem para alinhar melhor com a data */
+}
+
+/* Vamos reutilizar a classe .post-meta que já temos */
+.existing-post-item .post-meta {
+    margin-bottom: 0;
+    font-size: var(--tamanho-label);
+}
+
+.admin-actions {
+    display: flex;
+    gap: var(--espaco-sm);
+    flex-shrink: 0; /* Impede que os botões encolham */
+}
+
+
+.btn-secondary {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto-em-secundaria);
+}
+
+.btn-error {
+    background-color: var(--cor-erro);
+    color: var(--cor-texto-em-primaria);
+}
+
+/* ----------------------------------- */
+/* 7. COMPONENTE DE AUTENTICAÇÃO       */
+/* ----------------------------------- */
+#auth-status-placeholder {
+    position: relative;
+}
+
+.btn-login {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-em-primaria);
+    font-weight: var(--peso-medium);
+    padding: var(--espaco-sm) var(--espaco-md);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-md);
+    cursor: pointer;
+    background-color: var(--cor-superficie-variante);
+    padding: var(--espaco-xs) var(--espaco-md);
+    border-radius: 50px;
+    transition: background-color 0.2s ease;
+}
+
+.user-profile:hover {
+    background-color: #d0d2db; /* Um pouco mais escuro que --cor-superficie-variante */
+}
+
+.user-profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-profile-name {
+    font-weight: var(--peso-medium);
+    font-size: var(--tamanho-label);
+}
+
+.logout-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    width: 250px;
+    background-color: var(--cor-superficie);
+    border-radius: var(--borda-radius);
+    box-shadow: var(--sombra-padrao);
+    padding: var(--espaco-sm);
+    z-index: 100;
+    border: 1px solid var(--cor-borda);
+}
+
+.logout-menu .user-info {
+    padding: var(--espaco-md);
+    border-bottom: 1px solid var(--cor-borda);
+    margin-bottom: var(--espaco-sm);
+}
+
+.logout-menu .user-info strong {
+    display: block;
+}
+
+.logout-menu .user-info span {
+    font-size: var(--tamanho-label);
+    color: var(--cor-texto-secundario);
+}
+
+.logout-menu .menu-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: var(--espaco-sm) var(--espaco-md);
+    background: none;
+    border: none;
+    font-size: var(--tamanho-body);
+    color: var(--cor-texto-principal);
+    cursor: pointer;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.logout-menu .menu-item:hover {
+    background-color: var(--cor-superficie-variante);
+}
+
+.logout-menu .menu-item-logout {
+    color: var(--cor-erro);
+    margin-top: var(--espaco-sm);
+    border-top: 1px solid var(--cor-borda);
+}
+
+/* Estilos para os botões de ação na Home */
+.admin-actions-home {
+    padding: 0 var(--espaco-md) var(--espaco-md);
+    display: flex;
+    gap: var(--espaco-sm);
+}
+
+.btn-admin-action {
+    padding: var(--espaco-xs) var(--espaco-md);
+    border-radius: 50px;
+    font-size: var(--tamanho-label);
+    text-decoration: none;
+    background-color: var(--cor-superficie-variante);
+    color: var(--cor-texto-secundario);
+    border: 1px solid var(--cor-borda);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-admin-action:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-em-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.btn-delete-home {
+    color: var(--cor-erro);
+}
+
+.btn-delete-home:hover {
+    background-color: var(--cor-erro);
+}
+
+/* 8. FOOTER */
+.main-footer {
+    background-color: var(--cor-superficie-variante);
+    color: var(--cor-texto-secundario);
+    padding: var(--espaco-xl) var(--espaco-lg);
+    border-top: 1px solid var(--cor-borda);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--espaco-xl);
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+}
+
+.footer-section {
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    color: var(--cor-texto-principal);
+    margin-bottom: var(--espaco-md);
+    font-weight: 500;
+}
+
+.footer-section ul {
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: var(--espaco-sm);
+}
+
+.footer-section ul li a {
+    color: var(--cor-texto-secundario);
+    transition: color 0.2s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--cor-primaria);
+}
+
+.social-icons-grid {
+    display: grid;
+    /* Cria 4 colunas de 40px de largura, sem adivinhação */
+    grid-template-columns: repeat(4, 40px);
+    gap: var(--espaco-md);
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--cor-texto-secundario);
+    transition: all 0.2s ease;
+}
+
+.footer-social a:hover {
+    /* Efeito de hover mais sutil e elegante */
+    color: var(--cor-primaria);
+    background-color: var(--cor-primaria-transparente);
+    transform: scale(1.1);
+}
+
+.footer-social a svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor; /* Garante que o ícone pegue a cor do link pai */
+}
+
+.footer-legal {
+    text-align: center;
+    font-size: var(--tamanho-label);
+    border-top: 1px solid var(--cor-borda);
+    padding-top: var(--espaco-lg);
+    max-width: var(--largura-maxima);
+    margin: var(--espaco-xl) auto 0;
+}
+
+.footer-nav ul li a {
+    display: inline-block; /* Necessário para aplicar padding corretamente */
+    padding: var(--espaco-xs) var(--espaco-md); /* Dá um respiro ao redor do texto */
+    border-radius: 50px; /* Cria o formato de pílula, bem moderno */
+    font-weight: var(--peso-medium); /* Deixa o texto um pouco mais destacado */
+    text-decoration: none;
+}
+
+.footer-nav ul li a:hover {
+    /* No hover, adicionamos um fundo sutil e mudamos a cor do texto */
+    color: var(--cor-texto-principal);
+    background-color: var(--cor-superficie);
+}
+
+
+/* ----------------------------------- */
+/* 9. PÁGINA 404 E OUTROS              */
+/* ----------------------------------- */
+.not-found-container {
+    text-align: center;
+    padding: var(--espaco-xxl);
+}
+
+.not-found-container h1 {
+    font-size: 6rem;
+    color: var(--cor-primaria);
+}
+
+/* ============================================= */
+/* 10. SOBRESCRITA DE ESTILOS DE BIBLIOTECAS (OVERRIDES) */
+/* ============================================= */
+
+/* Regra para a borda geral do editor no modo escuro */
+.dark-mode .toastui-editor-defaultUI {
+    border-color: var(--cor-borda) !important;
+}
+
+/* Regra para o fundo da área de digitação */
+.dark-mode .toastui-editor-md-container .CodeMirror {
+    background-color: var(--cor-fundo) !important;
+}
+
+/* A SOLUÇÃO "MILAGRE": Regra super específica para a COR DO TEXTO dentro do editor */
+.dark-mode .toastui-editor-md-container .CodeMirror pre.CodeMirror-line,
+.dark-mode .toastui-editor-md-container .CodeMirror span {
+    color: var(--cor-texto-principal) !important;
+}
+
+/* BÔNUS: Regra para a cor do cursor de texto */
+.dark-mode .toastui-editor-md-container .CodeMirror-cursor {
+    border-left-color: var(--cor-texto-secundario) !important;
+}
+
+/* Regra para a área de pré-visualização (para garantir a consistência) */
+.dark-mode .toastui-editor-md-preview {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+}

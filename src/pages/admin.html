@@ -1,0 +1,31 @@
+<div id="content-container" style="display: block;">
+    <h2 id="form-title">Criar Novo Post</h2>
+    <form id="post-form">
+        <input type="hidden" id="edit-post-id">
+        
+        <div class="form-group">
+            <label for="post-title">Título</label>
+            <input type="text" id="post-title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="featured-image">Imagem de Destaque</label>
+            <input type="file" id="featured-image" accept="image/*">
+            <div class="image-preview-placeholder" id="image-preview">
+                <span>Prévia da Imagem</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="post-content">Conteúdo (suporta Markdown)</label>
+            <div id="editor-container"></div>
+        </div>
+        
+        <button type="submit" id="submit-btn">Salvar Post</button>
+    </form>
+
+    <div id="existing-posts">
+        <h2>Posts Existentes</h2>
+        <div id="posts-list"></div>
+    </div>
+</div>
