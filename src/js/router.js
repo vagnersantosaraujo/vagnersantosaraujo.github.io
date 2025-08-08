@@ -25,6 +25,18 @@ function updateActiveNavLink(path) {
 
 const loadContent = async (path) => {
     const routeKey = path.split('?')[0];
+
+        // --- INÍCIO DA NOSSA LÓGICA DE TESTE ---
+    const body = document.body;
+    // Adiciona a classe se estivermos na página de admin
+    if (routeKey === '/admin') {
+        body.classList.add('admin-page-active');
+    } else {
+        // Remove a classe se estivermos em qualquer outra página
+        body.classList.remove('admin-page-active');
+    }
+    // --- FIM DA LÓGICA DE TESTE ---
+
     const isPostPage = path.startsWith('/post?id=');
     let filePath = routes[routeKey];
     if (!filePath && !isPostPage) {

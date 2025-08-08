@@ -681,29 +681,36 @@ button:hover, .btn:hover {
 /* 10. SOBRESCRITA DE ESTILOS DE BIBLIOTECAS (OVERRIDES) */
 /* ============================================= */
 
-/* Regra para a borda geral do editor no modo escuro */
+/* SOLUÇÃO FINAL E CORRIGIDA para o editor no Modo Escuro */
+/* Alvo: .toastui-editor-md-mode, como no nosso teste bem-sucedido */
+
+/* Mantém a borda do editor consistente com o tema */
 .dark-mode .toastui-editor-defaultUI {
     border-color: var(--cor-borda) !important;
 }
 
-/* Regra para o fundo da área de digitação */
-.dark-mode .toastui-editor-md-container .CodeMirror {
-    background-color: var(--cor-fundo) !important;
+/* Define o fundo cinza claro para TODA a área do modo Markdown (escrita + preview) */
+.dark-mode .toastui-editor-md-mode {
+    background-color: #f0f0f0 !important;
 }
 
-/* A SOLUÇÃO "MILAGRE": Regra super específica para a COR DO TEXTO dentro do editor */
+/* Garante que o texto dentro da ÁREA DE ESCRITA seja escuro */
 .dark-mode .toastui-editor-md-container .CodeMirror pre.CodeMirror-line,
 .dark-mode .toastui-editor-md-container .CodeMirror span {
+    color: #1E1E1E !important; /* Preto suave */
+}
+
+/* Garante que o cursor seja visível no fundo claro */
+.dark-mode .toastui-editor-md-container .CodeMirror-cursor {
+    border-left-color: #1E1E1E !important;
+}
+
+/* RESTAURA o fundo escuro apenas na ÁREA DE PREVIEW, mantendo a consistência */
+.dark-mode .toastui-editor-md-preview {
+    background-color: var(--cor-fundo) !important;
     color: var(--cor-texto-principal) !important;
 }
 
-/* BÔNUS: Regra para a cor do cursor de texto */
-.dark-mode .toastui-editor-md-container .CodeMirror-cursor {
-    border-left-color: var(--cor-texto-secundario) !important;
-}
-
-/* Regra para a área de pré-visualização (para garantir a consistência) */
-.dark-mode .toastui-editor-md-preview {
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto-principal);
+body.admin-page-active .toastui-editor-md-mode {
+    background-color: #f0f0f0 !important;
 }

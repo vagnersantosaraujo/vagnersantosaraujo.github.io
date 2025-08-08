@@ -1,11 +1,8 @@
-// js/admin-script.js (VERSÃO COM TOAST UI EDITOR)
 import { auth, db } from './firebase-init.js';
 import { getDoc, doc, updateDoc, addDoc, collection, serverTimestamp, getDocs, query, orderBy } from "firebase/firestore";
-
-// Importa o Editor e seu CSS
 import Editor from '@toast-ui/editor';
-import '@toast-ui/editor/dist/toastui-editor.css'; // Estilo base
-import '@toast-ui/editor/dist/theme/toastui-editor-dark.css'; // Estilo do tema escuro!
+import '@toast-ui/editor/dist/toastui-editor.css';
+import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
 export function initializeAdminPage() {
     const user = auth.currentUser;
@@ -28,17 +25,23 @@ export function initializeAdminPage() {
         return;
     }
     
-    // Limpa o container para garantir que não haja editores duplicados ao navegar
     editorContainer.innerHTML = '';
 
-    // INICIALIZAÇÃO DO NOVO EDITOR
     const editor = new Editor({
-        el: editorContainer, // Onde o editor deve ser inserido
+        el: editorContainer,
         height: '400px',
-        initialEditType: 'markdown', // Começa no modo Markdown
-        previewStyle: 'vertical', // Preview lado a lado
-        // A MÁGICA ACONTECE AQUI:
-        theme: document.body.classList.contains('dark-mode') ? 'dark' : 'default'
+        initialEditType: 'markdown',
+        previewStyle: 'vertical',
+        // AQUI ESTÁ A MUDANÇA! Forçamos o tema 'default' (claro) o tempo todo.
+        theme: 'default',
+        autofocus: false,
+        usageStatistics: false,
+        codeBlockLanguages: ['javascript', 'css', 'html', 'xml', 'typescript'],
+        codemirror: {
+            // A configuração do CodeMirror agora também pode ser simplificada ou removida,
+            // mas vamos mantê-la para garantir consistência.
+            theme: 'default'
+        }
     });
 
     let featuredImageBase64 = null;
@@ -62,7 +65,7 @@ export function initializeAdminPage() {
         const editPostId = editPostIdInput.value;
         const postData = {
             title: titleInput.value,
-            contentMarkdown: editor.getMarkdown(), // Pega o conteúdo em Markdown
+            contentMarkdown: editor.getMarkdown(),
             authorId: user.uid,
             authorName: user.displayName,
             updatedAt: serverTimestamp(),
@@ -91,7 +94,6 @@ export function initializeAdminPage() {
         }
     });
 
-    // Lógica para carregar post para edição
     const params = new URLSearchParams(window.location.hash.split('?')[1]);
     const editId = params.get('edit');
     if (editId) {
@@ -103,7 +105,7 @@ export function initializeAdminPage() {
             if (docSnap.exists()) {
                 const post = docSnap.data();
                 titleInput.value = post.title;
-                editor.setMarkdown(post.contentMarkdown || ''); // Coloca o conteúdo no editor
+                editor.setMarkdown(post.contentMarkdown || '');
                 if (post.featuredImage) {
                     featuredImageBase64 = post.featuredImage;
                     imagePreview.innerHTML = `<img src="${post.featuredImage}" alt="Prévia da imagem">`;
