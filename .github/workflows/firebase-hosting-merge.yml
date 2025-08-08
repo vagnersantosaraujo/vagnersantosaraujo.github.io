@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-on:
+'on':
   push:
     branches:
       - main
@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # AQUI ESTÁ A CORREÇÃO: Adicionamos o bloco 'env' para passar os segredos
       - run: npm ci && npm run build
-      - env:
+        env:
           VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
           VITE_AUTH_DOMAIN: ${{ secrets.VITE_AUTH_DOMAIN }}
           VITE_PROJECT_ID: ${{ secrets.VITE_PROJECT_ID }}
@@ -21,7 +22,7 @@ jobs:
           VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VAGNERPAGES_5B527 }}
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VAGNERPAGES_5B527 }}'
           channelId: live
           projectId: vagnerpages-5b527
