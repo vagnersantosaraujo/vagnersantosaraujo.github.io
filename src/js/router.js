@@ -4,11 +4,11 @@ import { initializeAdminPage } from './admin-script.js';
 import { loadSinglePost } from './post-loader.js';
 
 const routes = {
-    '/': '/src/pages/home.html',
-    '/sobre': '/src/pages/sobre.html',
-    '/contato': '/src/pages/contato.html',
-    '/admin': '/src/pages/admin.html',
-    '/post': '/src/pages/post.html'
+    '/': '/pages/home.html',
+    '/sobre': '/pages/sobre.html',
+    '/contato': '/pages/contato.html',
+    '/admin': '/pages/admin.html',
+    '/post': '/pages/post.html'
 };
 
 let appContainer;

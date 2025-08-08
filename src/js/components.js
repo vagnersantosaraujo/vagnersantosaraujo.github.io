@@ -28,6 +28,6 @@ const loadComponent = (url, elementId) => {
 
 // AQUI ESTÁ A CORREÇÃO! Adicionamos 'export' para que o main.js possa importar esta função.
 export const loadAllComponents = () => {
-  loadComponent('/src/components/header.html', 'header-placeholder');
-  loadComponent('/src/components/footer.html', 'footer-placeholder');
+  loadComponent('/components/header.html', 'header-placeholder');
+  loadComponent('/components/footer.html', 'footer-placeholder');
 };
