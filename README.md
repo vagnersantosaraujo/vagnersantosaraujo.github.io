@@ -19,56 +19,31 @@ Este `README` serve como uma documentação central do projeto, explicando sua e
     ```
 6.  Abra a URL `http://localhost:5173` (ou a que for indicada no seu terminal) no navegador.
 
+## ⚙️ Configurando o Deploy Automático (CI/CD)
+
+O deploy para o Firebase Hosting é automatizado via GitHub Actions. Para replicar este projeto, a seguinte configuração de segredos no repositório do GitHub é necessária:
+
+1.  **Chaves da Aplicação:** Crie "Repository secrets" na aba "Settings" > "Secrets and variables" > "Actions" para cada uma das variáveis presentes no arquivo `.env.example` (ex: `VITE_API_KEY`).
+2.  **Autenticação do Firebase:** É necessário criar uma **Conta de Serviço (Service Account)** no Google Cloud Console com o papel de "Administrador do Firebase Hosting".
+    * Gere uma chave JSON para esta conta.
+    * Copie o conteúdo completo do arquivo JSON.
+    * Crie um novo "Repository secret" com o nome `FIREBASE_SERVICE_ACCOUNT_[SEU_PROJECT_ID]` e cole o conteúdo do JSON como seu valor.
+
 ## 📂 Estrutura do Projeto
 
 A estrutura do projeto separa claramente as configurações do código-fonte da aplicação (`src`).
 
+* `.github/` - Contém os arquivos de workflow do GitHub Actions para CI/CD.
 * `.env` - Armazena variáveis de ambiente e segredos (local, não versionado).
-* `.env.example` - Arquivo de exemplo para as variáveis de ambiente.
-* `.gitignore` - Define quais arquivos o Git deve ignorar.
 * `index.html` - O ponto de entrada principal (a "casca") da nossa SPA.
 * `package.json` - Define as dependências e scripts do projeto.
-* `firebase.json` / `firestore.rules` - Configurações do Firebase.
 * `public/` - Contém assets estáticos que são servidos diretamente, como o `favicon.svg`.
 * `src/` - **Contém todo o código-fonte da aplicação.**
     * `assets/` - Recursos como o sprite de ícones SVG.
     * `components/` - Fragmentos de HTML reutilizáveis (`header.html`, `footer.html`).
     * `css/` - Arquivos de estilo (`style.css`).
-    * `js/` - Todos os módulos JavaScript da aplicação.
+    * `js/` - Módulos JavaScript da aplicação.
     * `pages/` - Fragmentos de HTML para cada "página" da SPA.
-
-## 🏗️ Arquitetura e Linha de Tempo de Carregamento
-
-A aplicação segue o padrão SPA (Single Page Application), orquestrado pelo Vite. O diagrama de sequência abaixo ilustra o processo de carregamento inicial da página Home.
-
-```mermaid
-sequenceDiagram
-    participant Navegador as 👤 Navegador
-    participant ServidorVite as ⚡ Servidor Vite
-    participant main_js as 🚀 main.js
-    participant Router_js as 🗺️ Router
-    participant Firebase as 🔥 Firebase
-
-    Navegador->>ServidorVite: 1. Pede o index.html
-    ServidorVite-->>Navegador: 2. Entrega o HTML base
-    Note over Navegador,ServidorVite: O navegador analisa o HTML e encontra a tag do script
-
-    Navegador->>ServidorVite: 3. Pede /src/js/main.js
-    ServidorVite-->>Navegador: 4. Entrega o main.js e suas dependências (CSS, outros JS)
-    
-    Note right of Navegador: 5. Browser executa o main.js
-    main_js->>Router_js: 6. Chama initializeRouter()
-    
-    Note right of Router_js: 7. Router busca o HTML da página atual
-    Router_js->>ServidorVite: 8. fetch('/src/pages/home.html')
-    ServidorVite-->>Router_js: 9. Entrega o fragmento HTML
-    
-    Note right of Router_js: 10. Router busca os dados dos posts
-    Router_js->>Firebase: 11. getDocs(collection(...))
-    Firebase-->>Router_js: 12. Retorna a lista de posts
-    
-    Note over Router_js,Navegador: 13. Router preenche a <main id="app"> e a página está completa
-```
 
 ## ✨ Funcionalidades
 
@@ -76,30 +51,32 @@ sequenceDiagram
 * **Banco de Dados na Nuvem:** Todos os posts são armazenados e lidos do Firestore.
 * **Arquitetura SPA:** Navegação rápida e fluida sem recarregar a página.
 * **CRUD Completo:** Crie, Leia, Atualize e Exclua posts em uma área administrativa protegida.
-* **Editor Markdown:** Escreva posts usando um editor moderno (EasyMDE) que salva em Markdown.
+* **Editor Markdown:** Escreva posts usando um editor moderno (Toast UI) que salva em Markdown.
 * **Renderização Segura:** O conteúdo é convertido de Markdown para HTML e sanitizado para prevenir ataques de XSS.
-* **Publicação Profissional:** Deploy feito através do Firebase Hosting.
+* **Publicação Profissional:** Deploy automatizado com GitHub Actions para o Firebase Hosting.
 
 ## 📘 Guia de Boas Práticas Aplicadas
 
 Este projeto foi construído seguindo uma série de boas práticas do mercado para garantir um código limpo, seguro e de fácil manutenção.
 
-* **Centralização do Código-Fonte (`src`):** Todo o código da aplicação reside na pasta `/src`, separando-o dos arquivos de configuração. ([Vite: A Pasta `src`](https://vitejs.dev/guide/#scaffolding-your-first-vite-project))
-* **Gerenciamento de Segredos (`.env`):** Chaves de API são armazenadas em um arquivo `.env` local (ignorado pelo Git) e lidas pelo Vite, prevenindo a exposição de dados sensíveis. ([Vite: Variáveis de Ambiente e Modos](https://vitejs.dev/guide/env-and-mode.html))
-* **HTML Semântico:** Utilizamos tags como `<header>`, `<main>`, `<footer>`, etc., para Acessibilidade e SEO. ([MDN: Elementos semânticos](https://developer.mozilla.org/pt-BR/docs/Glossary/Semantics#semantics_in_html))
-* **CSS Moderno (Design Tokens):** Usamos variáveis CSS (`:root`) para centralizar as decisões de design, facilitando a consistência e a criação de temas. ([MDN: Usando variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties))
-* **JavaScript Modular (ESM):** Usamos `import`/`export` para criar um código desacoplado e com dependências claras. ([MDN: Módulos JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Modules))
-* **Arquitetura SPA (*Single Page Application*):** A aplicação carrega uma única vez e a navegação é gerenciada via JavaScript, para uma experiência de usuário mais rápida. ([MDN: Single-page application](https://developer.mozilla.org/pt-BR/docs/Glossary/SPA))
-* **Segurança no Front-End (Sanitização):** Todo conteúdo gerado pelo usuário é sanitizado com **DOMPurify** para prevenir ataques de **XSS (*Cross-Site Scripting*)**. ([OWASP: Prevenção de XSS](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html))
-* **Gerenciamento de Dependências (NPM):** Todas as bibliotecas externas são gerenciadas pelo NPM e listadas no `package.json`. ([npm Docs: About npm](https://docs.npmjs.com/about-npm))
+* **Centralização do Código-Fonte (`src`):** Todo o código da aplicação reside na pasta `/src`. ([Vite: A Pasta `src`](https://vitejs.dev/guide/#scaffolding-your-first-vite-project))
+* **Gerenciamento de Segredos (`.env` e GitHub Secrets):** Chaves de API são armazenadas em um arquivo `.env` local e passadas para o ambiente de CI/CD através de GitHub Secrets. ([Vite: Variáveis de Ambiente e Modos](https://vitejs.dev/guide/env-and-mode.html))
+* **HTML Semântico:** Uso de tags como `<header>`, `<main>`, `<footer>` para Acessibilidade e SEO. ([MDN: Elementos semânticos](https://developer.mozilla.org/pt-BR/docs/Glossary/Semantics#semantics_in_html))
+* **CSS Moderno (Design Tokens):** Uso de variáveis CSS (`:root`) para um sistema de design consistente. ([MDN: Usando variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties))
+* **JavaScript Modular (ESM):** Uso de `import`/`export` para um código desacoplado. ([MDN: Módulos JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Modules))
+* **Arquitetura SPA (*Single Page Application*):** Para uma experiência de usuário rápida. ([MDN: Single-page application](https://developer.mozilla.org/pt-BR/docs/Glossary/SPA))
+* **Segurança no Front-End (Sanitização):** Uso de **DOMPurify** para prevenir ataques de **XSS**. ([OWASP: Prevenção de XSS](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html))
+* **Gerenciamento de Dependências (NPM):** Bibliotecas externas gerenciadas via `package.json`. ([npm Docs: About npm](https://docs.npmjs.com/about-npm))
+* **Histórico de Commits Semântico:** Adoção do padrão **Conventional Commits**. ([Conventional Commits](https://www.conventionalcommits.org/))
 
 ## 🎯 Próximos Passos
 
 O plano é continuar evoluindo o projeto com foco em design e funcionalidades avançadas.
 
--   [x] ~~Migrar do `LocalStorage` para o **Firebase**.~~
--   [x] ~~Publicar o site com **Firebase Hosting**.~~
--   [x] ~~Implementar um **Design System** (Material Design 3) para uma UI moderna.~~
+-   ✅ Migrar do `LocalStorage` para o **Firebase**.
+-   ✅ Publicar o site com **Firebase Hosting**.
+-   ✅ Implementar um **Design System** (Material Design 3).
+-   ✅ Configurar **Deploy Automatizado (CI/CD)**.
 -   [ ] Implementar **Taxonomia** (Categorias e Tags).
--   [ ] Configurar um **domínio personalizado**.
+-   [ ] Configurar um **domínio personalizado** (ajuste fino).
 -   [ ] Adicionar funcionalidades com **Inteligência Artificial** usando a API do Gemini.
