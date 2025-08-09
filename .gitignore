@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+vagnerpages-5b527-f8e03b28f0a9.json
 
 # Editor directories and files
 .vscode/*
