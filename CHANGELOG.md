@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/vagnersantosaraujo/vagnersantosaraujo.github.io/compare/v0.0.0...v0.1.0) (2025-08-09)
+
+
+### Features
+
+* **ci:** Adiciona workflow do Release Please para automação de changelog e versionamento ([b2180c7](https://github.com/vagnersantosaraujo/vagnersantosaraujo.github.io/commit/b2180c7056ff96bf0f8a31802f7da0a9f1e04828))
+
+
+### Bug Fixes
+
+* **ci:** Atualiza token de autenticação do Release Please para PAT ([1500b15](https://github.com/vagnersantosaraujo/vagnersantosaraujo.github.io/commit/1500b15226b765c4a0c3899260138904105030fb))
+
 ## 0.0.0 (2025-08-09)
 
 
