@@ -96,49 +96,57 @@ Este projeto foi construído seguindo uma série de boas práticas do mercado pa
     * ✅ 4.1. Estudo e Estratégia: Definição de tokens de design (cores, fontes, espaçamento) inspirados no Material Design 3.
     * ✅ 4.2. Implementação do Design System: Tradução dos tokens para variáveis CSS.
     * ✅ 4.3. Componentes e Páginas: Aplicação do Design System na UI.
+    * 🕒 4.4. Refinamentos da UI:
+        * 🕒 4.4.1. Unificar a cor de hover dos menus com a das redes sociais (azul).
+        * 🕒 4.4.2. Implementar "menu hamburguer" para telas pequenas.
+        * 🕒 4.4.3. Implementar um seletor de tema (claro, escuro, automático) no painel de Admin.
+        * 🕒 4.4.4. Aumentar a área do editor de texto em telas grandes.
+        * 🕒 4.4.5. Adicionar a mensagem "Construído com CMS VSA" ao rodapé.
 
-* **✅ Fase 5: A Revolução da Arquitetura (Aprendendo sobre SPAs)**
-    * ✅ 5.1. Fundamentos da SPA: Estudo do conceito de Single Page Application.
-    * ✅ 5.2. Implementação: Refatoração para uma arquitetura SPA com roteamento baseado em hash.
+* **✅ Fase 5: Arquitetura e Estrutura Profissional (Aprendendo Vite e Boas Práticas)**
+    * ✅ 5.1. Arquitetura SPA: Refatoração para uma arquitetura Single Page Application com roteamento baseado em hash.
+    * ✅ 5.2. Ferramenta de Build (Vite): Substituição do Live Server pelo **Vite** como servidor de desenvolvimento e build tool.
+    * ✅ 5.3. Código Modular (Módulos ES): Refatoração completa do código para o padrão `import`/`export`.
+    * ✅ 5.4. Padrões de Código: Implementação de Delegação de Eventos com `data-attributes`.
+    * ✅ 5.5. Estrutura de Arquivos: Reestruturação do projeto para o padrão de mercado com a pasta `/src`.
+    * ✅ 5.6. Segurança de Credenciais: Implementação de gerenciamento de segredos com variáveis de ambiente (`.env`).
+    * ✅ 5.7. Depuração de Dependências: Resolução do problema de legibilidade do editor de texto no modo escuro através da substituição do **EasyMDE pelo Toast UI Editor** e implementação de uma solução de tema customizada.
 
-* **✅ Fase 5.5: Upgrade Estrutural (Aprendendo Vite e Boas Práticas)**
-    * ✅ 5.5.1. Substituição do Live Server pelo **Vite** como servidor de desenvolvimento e build tool.
-    * ✅ 5.5.2. Refatoração completa do código para o padrão de **Módulos ES (`import`/`export`)**, resolvendo a cadeia de dependências.
-    * ✅ 5.5.3. Implementação de **Delegação de Eventos** com `data-attributes` para os botões de ação.
-    * ✅ 5.5.4. Implementação de **gerenciamento de segredos** com variáveis de ambiente (`.env`).
-    * ✅ 5.5.5. Reestruturação do projeto para o padrão de mercado com a pasta `/src`.
-    * ✅ 5.5.6. Correção de todos os caminhos de arquivos (`assets`, `components`, `pages`) para funcionar no ambiente de produção.
-    * ✅ 5.5.7. Resolução do problema de legibilidade do editor de texto no modo escuro através da substituição do **EasyMDE pelo Toast UI Editor** e implementação de uma solução de tema customizada.
+* **✅ Fase 6: Publicação Profissional e DevOps (Aprendendo CI/CD)**
+    * ✅ 6.1. Domínio e Deploy Inicial
+        * ✅ 6.1.1. Conexão do domínio personalizado `vagner.page`.
+        * ✅ 6.1.2. Configuração dos registros DNS (A, CNAME, TXT) no provedor.
+        * ✅ 6.1.3. Verificação e correção da configuração de deploy (`firebase.json`) para apontar para a pasta `dist` e incluir regras de `rewrite` para a SPA.
+        * ✅ 6.1.4. Depuração de problemas pós-deploy (login, caminhos de assets).
+    * ✅ 6.2. CI/CD: Configuração do Deploy Automatizado
+        * ✅ 6.2.1. Inicialização do workflow do GitHub Actions com `firebase init hosting:github`.
+        * ✅ 6.2.2. Depuração de falhas de permissão (Token de Acesso Pessoal sem o escopo `workflow`).
+        * ✅ 6.2.3. Configuração dos **GitHub Secrets** para as chaves de API do Firebase (`VITE_...`).
+        * ✅ 6.2.4. Criação e configuração manual de uma **Conta de Serviço (Service Account)** no Google Cloud para autenticação segura do CI/CD.
+        * ✅ 6.2.5. Atualização do arquivo `.github/workflows/firebase-hosting-merge.yml` para usar os segredos no build e a autenticação correta no deploy.
 
-* **✅ Fase 9: Publicação Profissional e DevOps (Aprendendo CI/CD)**
-    * ✅ 9.1. Domínio e Deploy Inicial
-        * ✅ 9.1.1. Conexão do domínio personalizado `vagner.page`.
-        * ✅ 9.1.2. Configuração dos registros DNS (A, CNAME, TXT) no provedor.
-        * ✅ 9.1.3. Verificação e correção da configuração de deploy (`firebase.json`) para apontar para a pasta `dist` e incluir regras de `rewrite` para a SPA.
-        * ✅ 9.1.4. Depuração de problemas pós-deploy (login, caminhos de assets).
-    * ✅ 9.2. CI/CD: Configuração do Deploy Automatizado
-        * ✅ 9.2.1. Inicialização do workflow do GitHub Actions com `firebase init hosting:github`.
-        * ✅ 9.2.2. Depuração de falhas de permissão (Token de Acesso Pessoal sem o escopo `workflow`).
-        * ✅ 9.2.3. Configuração dos **GitHub Secrets** para as chaves de API do Firebase (`VITE_...`).
-        * ✅ 9.2.4. Criação e configuração manual de uma **Conta de Serviço (Service Account)** no Google Cloud para autenticação segura do CI/CD.
-        * ✅ 9.2.5. Atualização do arquivo `.github/workflows/firebase-hosting-merge.yml` para usar os segredos no build e a autenticação correta no deploy.
+* **👉 Fase 7: Funcionalidades Avançadas de Conteúdo (Aprendendo Taxonomia e SEO)**
+    * 👉 7.1. Taxonomia: Implementar sistema de Categorias e Tags nos posts.
+        * 🕒 7.1.1. Adicionar campos `category` e `tags` ao modelo de dados no Firestore.
+        * 🕒 7.1.2. Atualizar o formulário de Admin para incluir inputs para categoria e tags.
+        * 🕒 7.1.3. Exibir a categoria e as tags na página do post e nos cards da home.
+    * 🕒 7.2. Busca: Criar uma função de busca de posts no blog.
+    * 🕒 7.3. SEO: Implementar meta tags e garantir que o Google encontre o site.
+    * 🕒 7.4. Melhorias de Conteúdo:
+        * 🕒 7.4.1. Implementar funcionalidade de "Salvar Rascunho" (auto-save).
+        * 🕒 7.4.2. Exibir a data de "Última Atualização" nos posts, além da de publicação.
 
-* **👉 Fase 6: Funcionalidades Avançadas de Conteúdo (Aprendendo Taxonomia e SEO)**
-    * 👉 6.1. Taxonomia: Implementar sistema de Categorias e Tags nos posts.
-        * 🕒 6.1.1. Adicionar campos `category` e `tags` ao modelo de dados no Firestore.
-        * 🕒 6.1.2. Atualizar o formulário de Admin para incluir inputs para categoria e tags.
-        * 🕒 6.1.3. Exibir a categoria e as tags na página do post e nos cards da home.
-    * 🕒 6.2. Busca: Criar uma função de busca de posts no blog.
-    * 🕒 6.3. SEO: Adicionar campos de SEO (meta description, keywords) no formulário.
+* **🕒 Fase 8: Backend Próprio e Segurança Avançada (Aprendendo Cloud Functions)**
+    * 🕒 8.1. Backend Serverless: Criação de Cloud Functions para lógica de backend.
+    * 🕒 8.2. Armazenamento de Arquivos: Implementação do Cloud Storage para upload de imagens (substituindo o Base64).
+    * 🕒 8.3. Segurança: Refinamento das regras do Firestore.
 
-* **🕒 Fase 7: Backend Próprio e Segurança Avançada (Aprendendo Cloud Functions)**
-    * 🕒 7.1. Backend Serverless: Criação de Cloud Functions para lógica de backend.
-    * 🕒 7.2. Armazenamento de Arquivos: Implementação do Cloud Storage para upload de imagens (substituindo o Base64).
-    * 🕒 7.3. Segurança: Refinamento das regras do Firestore.
-
-* **🕒 Fase 8: Engajamento e Inteligência Artificial (Aprendendo APIs)**
-    * 🕒 8.1. Comunidade: Implementar um sistema de comentários nos posts.
-    * 🕒 8.2. IA: Integrar a API do Gemini para a funcionalidade "Sugerir Título com IA".
+* **🕒 Fase 9: Engajamento e Inteligência Artificial (Aprendendo APIs)**
+    * 🕒 9.1. Comunidade:
+        * 🕒 9.1.1. Implementar um sistema de comentários nos posts.
+        * 🕒 9.1.2. Criar links para o perfil do autor em cada post.
+        * 🕒 9.1.3. Adicionar sugestão de login para visitantes não autenticados.
+    * 🕒 9.2. IA: Integrar a API do Gemini para a funcionalidade "Sugerir Título com IA".
 
 * **🅿️ Fase 10: Qualidade e Otimização (Pausado)**
     * 🅿️ 10.1. Validação de Código: Configuração de ferramentas como ESLint/Prettier.
